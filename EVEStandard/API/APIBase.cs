@@ -334,7 +334,9 @@ namespace EVEStandard.API
                 {
                     using (var document = JsonDocument.Parse(model.JSONString))
                     {
-                        if (document.RootElement.TryGetProperty("cursor", out var cursorElement))
+                        //Only try and get the cursor if the root element is an object and has a "cursor" property.
+                        //Attempting to parse an array(like market data) will throw an invalid operation exception.
+                        if (document.RootElement.ValueKind == JsonValueKind.Object && document.RootElement.TryGetProperty("cursor", out var cursorElement))
                         {
                             model.Cursor = JsonSerializer.Deserialize<CursorInfo>(cursorElement.GetRawText());
                         }
