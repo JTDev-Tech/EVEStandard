@@ -8,6 +8,24 @@ namespace EVEStandard.Models
     /// </summary>
     public class CorporationProject : ModelBase<CorporationProject>
     {
+        public class _Reward
+        {
+            [JsonPropertyName("initial")]
+            public double Initial { get; set; }
+
+            [JsonPropertyName("remaining")]
+            public double Remaining { get; set; }
+        }
+
+        public class _Progress
+        {
+            [JsonPropertyName("current")]
+            public long Current { get; set; }
+
+            [JsonPropertyName("desired")]
+            public long Desired { get; set; }
+        }
+
         #region Properties
 
         /// <summary>
@@ -16,53 +34,20 @@ namespace EVEStandard.Models
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        /// <summary>
-        /// The type/category of the project
-        /// </summary>
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
-        /// <summary>
-        /// The title/name of the project
-        /// </summary>
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
+        [JsonPropertyName("state")]
+        public string State { get; set; }
 
-        /// <summary>
-        /// Description of the project
-        /// </summary>
-        [JsonPropertyName("description")]
-        public string Description { get; set; }
+        [JsonPropertyName("last_modified")]
+        public DateTime LastModified { get; set; }
 
-        /// <summary>
-        /// Status of the project
-        /// </summary>
-        [JsonPropertyName("status")]
-        public string Status { get; set; }
+        [JsonPropertyName("progress")]
+        public _Progress Progress { get; set; }
 
-        /// <summary>
-        /// When the project was created
-        /// </summary>
-        [JsonPropertyName("created")]
-        public DateTime? Created { get; set; }
-
-        /// <summary>
-        /// When the project was last modified
-        /// </summary>
-        [JsonPropertyName("modified")]
-        public DateTime Modified { get; set; }
-
-        /// <summary>
-        /// Deadline for the project, if any
-        /// </summary>
-        [JsonPropertyName("deadline")]
-        public DateTime? Deadline { get; set; }
-
-        /// <summary>
-        /// The character ID of the project creator
-        /// </summary>
-        [JsonPropertyName("creator_id")]
-        public long? CreatorId { get; set; }
+        [JsonPropertyName("reward")]
+        public _Reward Reward { get; set; }
 
         #endregion Properties
     }
